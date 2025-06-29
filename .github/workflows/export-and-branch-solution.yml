@@ -1,12 +1,6 @@
 name: export-and-branch-solution
-# Export solution from DEV environme    - name: branch-solution, prepare it for a PullRequest
-      uses: microsoft/powerplatform-actions/branch-solution@v0
-      with:
-        solution-folder: out/solutions/${{ github.event.inputs.solution_name }}
-        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
-        branch-name: ${{ format('{0}-{1}-{2}-solution', github.actor, steps.gen_timestamp.outputs.timestamp, github.event.inputs.solution_name) }}
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        allow-empty-commit: truepack it and prepare, commit and push a git branch with the changes
+# Export solution from DEV environment
+#  unpack it and prepare, commit and push a git branch with the changes
 
 on:
   workflow_dispatch:
@@ -40,7 +34,7 @@ jobs:
     - name: Generate timestamp
       id: gen_timestamp
       shell: bash
-      run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT      
+      run: echo "timestamp=$(date -u +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT      
     - name: checkout code
       uses: actions/checkout@v2
       with:
@@ -78,8 +72,6 @@ jobs:
       with:
         solution-folder: out/solutions/${{ github.event.inputs.solution_name }}
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
-        branch-name: ${{ format('{0}-{1}-{2}-solution', github.actor, steps.gen_timestamp.outputs.timestamp, github.event.inputs.solution_name) }}
+        branch-name: ${{ format('{0}-{1}-{2}', steps.gen_timestamp.outputs.timestamp, github.actor, github.event.inputs.solution_name) }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-
-
