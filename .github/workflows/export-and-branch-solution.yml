@@ -7,7 +7,7 @@ on:
     inputs:
       # Change this value
       environment_url:
-          description: ENVIRONMENT_URL of the environment
+          description: ENVIRONMENT_URL of the environment (including https://)
           required: true
       solution_name:
         description: 'name of the solution to worked on from Power Platform'
@@ -29,8 +29,13 @@ jobs:
     env:
       RUNNER_DEBUG: 1
 
+      
     steps:
-    - uses: actions/checkout@v2
+    - name: Generate timestamp
+      id: gen_timestamp
+      run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT      
+    - name: checkout code
+      uses: actions/checkout@v2
       with:
         lfs: true
 
@@ -66,5 +71,8 @@ jobs:
       with:
         solution-folder: out/solutions/${{ github.event.inputs.solution_name }}
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        branch-name: ${{ format('{0}-{1}-{2}-solution', steps.gen_timestamp.outputs.timestamp, github.actor, github.event.inputs.solution_name) }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
+
+
