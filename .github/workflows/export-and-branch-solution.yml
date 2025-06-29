@@ -34,7 +34,8 @@ jobs:
         lfs: true
     - name: Capture Environment Details
       run: |
-        echo "ENVIRONMENT_URL=https://${{ github.event.inputs.env_name }}.crm.dynamics.com" >> $GITHUB_ENV        
+        echo "ENVIRONMENT_URL=https://${{ github.event.inputs.env_name }}.crm.dynamics.com" >> $GITHUB_ENV
+        echo "ENVIRONMENT_URL=${{ env.ENVIRONMENT_URL }}"   
 
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
