@@ -72,6 +72,6 @@ jobs:
       with:
         solution-folder: out/solutions/${{ github.event.inputs.solution_name }}
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
-        branch-name: ${{ format('{0}-{1}-{2}', github.event.inputs.solution_name, github.actor, steps.gen_timestamp.outputs.timestamp,  ) }}
+        branch-name: ${{ format('{0}-{1}-{2}', github.event.inputs.solution_name, github.actor, steps.gen_timestamp.outputs.timestamp  ) }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
