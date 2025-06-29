@@ -11,7 +11,7 @@ on:
         description: AAD object id for the user
         required: true
 env:
-  CLIENT_ID: ${{ vars.CLIENT_ID }}
+  CICD_SP_CLIENT_ID: ${{ vars.CICD_SP_CLIENT_ID }}
   TENANT_ID: ${{ vars.TENANT_ID }}
       
 
@@ -36,8 +36,8 @@ jobs:
       id: create-env
       uses: microsoft/powerplatform-actions/create-environment@v0
       with:
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        app-id: ${{env.CICD_SP_CLIENT_ID}}
+        client-secret: ${{ secrets.CICD_SP_CLIENT_SECRET }}
         tenant-id: ${{env.TENANT_ID}}
         name: ${{ github.event.inputs.env_name}}
         type: Production
@@ -59,8 +59,8 @@ jobs:
     - name: assign-user to environment
       uses:  microsoft/powerplatform-actions/assign-user@v0
       with:
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        app-id: ${{env.CICD_SP_CLIENT_ID}}
+        client-secret: ${{ secrets.CICD_SP_CLIENT_SECRET }}
         tenant-id: ${{env.TENANT_ID}}
         environment: 'https://${{ github.event.inputs.env_name}}.crm.dynamics.com'
         user: ${{ github.event.inputs.user_id }}
