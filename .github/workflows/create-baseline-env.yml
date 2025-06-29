@@ -1,0 +1,69 @@
+name: Create baseline environment.
+
+on:
+  workflow_dispatch:
+    inputs:    
+     env_name:
+        description: name for the environment to be created
+        required: true
+
+     user_id:
+        description: AAD object id for the user
+        required: true
+env:
+  CLIENT_ID: ${{ vars.CLIENT_ID }}
+  TENANT_ID: ${{ vars.TENANT_ID }}
+      
+
+jobs:
+  Create-Environments:
+    runs-on: ubuntu-latest
+    # or you can say runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+      
+    - name: Show inputs
+      run: |
+        echo "env_name = ${{ github.event.inputs.env_name }}"
+        echo "user_id = ${{ github.event.inputs.user_id }}"
+        
+    - name: Create Environment
+      id: create-env
+      uses: microsoft/powerplatform-actions/create-environment@v0
+      with:
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        name: ${{ github.event.inputs.env_name}}
+        type: Production
+        domain: ${{ github.event.inputs.env_name}}
+    
+    - name: Capture Environment Details
+      run: |
+        echo "Environment URL: ${{ steps.create-env.outputs.environment-url }}"
+        echo "Environment ID: ${{ steps.create-env.outputs.environment-id }}"
+        echo "ENVIRONMENT_URL=${{ steps.create-env.outputs.environment-url }}" >> $GITHUB_ENV
+        echo "ENVIRONMENT_ID=${{ steps.create-env.outputs.environment-id }}" >> $GITHUB_ENV
+      
+    - name: print environment details
+      run: |
+        echo "Environment URL: ${{ env.ENVIRONMENT_URL }}"
+        echo "Environment ID: ${{ env.ENVIRONMENT_ID }}"
+        
+    
+    - name: assign-user to environment
+      uses:  microsoft/powerplatform-actions/assign-user@v0
+      with:
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        environment: 'https://${{ github.event.inputs.env_name}}.crm.dynamics.com'
+        user: ${{ github.event.inputs.user_id }}
+        role: System Administrator
+        
+    
