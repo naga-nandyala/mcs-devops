@@ -7,7 +7,7 @@ on:
     inputs:
       # Change this value
       environment_url:
-          description: ENVIRONMENT_URL of the environment to export the solution from
+          description: ENVIRONMENT_URL of the environment
           required: true
       solution_name:
         description: 'name of the solution to worked on from Power Platform'
