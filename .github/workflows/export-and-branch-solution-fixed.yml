@@ -34,7 +34,7 @@ jobs:
     - name: Generate timestamp
       id: gen_timestamp
       shell: bash
-      run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT      
+      run: echo "timestamp=$(date -u +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT      
     - name: checkout code
       uses: actions/checkout@v2
       with:
