@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
     inputs:
       # Change this value
-      env_name:
-          description: name for the environment to be created
+      environment_url:
+          description: URL of the environment to export the solution from
           required: true
       solution_name:
         description: 'name of the solution to worked on from Power Platform'
@@ -19,6 +19,7 @@ on:
 env:
   CICD_SP_CLIENT_ID: ${{ vars.CICD_SP_CLIENT_ID }}
   TENANT_ID: ${{ vars.TENANT_ID }}
+  ENVIRONMENT_URL: ${{ github.event.inputs.environment_url }}
 permissions:
   contents: write
 jobs:
@@ -32,10 +33,6 @@ jobs:
     - uses: actions/checkout@v2
       with:
         lfs: true
-    - name: Capture Environment Details
-      run: |
-        echo "ENVIRONMENT_URL=https://${{ github.event.inputs.env_name }}.crm.dynamics.com" >> $GITHUB_ENV
-        echo "ENVIRONMENT_URL=${{ env.ENVIRONMENT_URL }}"   
 
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
