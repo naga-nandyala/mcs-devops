@@ -1,0 +1,11 @@
+<botcomponent schemaname="ccpub_agent1_zA-9bY.topic.Search">
+  <componenttype>9</componenttype>
+  <description>Create generative answers from knowledge sources.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Conversational boosting</name>
+  <parentbotid>
+    <schemaname>ccpub_agent1_zA-9bY</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
