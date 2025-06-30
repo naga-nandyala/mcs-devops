@@ -1,4 +1,4 @@
-name: Create baseline environment.
+name: create-new-env.
 
 on:
   workflow_dispatch:

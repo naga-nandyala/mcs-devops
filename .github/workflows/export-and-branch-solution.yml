@@ -7,7 +7,7 @@ on:
     inputs:
       # Change this value
       environment_url:
-          description: ENVIRONMENT_URL of the environment (including https://)
+          description: ENVIRONMENT_URL of the environment from which solution needs to be checked-in (including https://)
           required: true
       solution_name:
         description: 'name of the solution to worked on from Power Platform'

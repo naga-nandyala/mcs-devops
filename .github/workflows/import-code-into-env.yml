@@ -1,10 +1,15 @@
-name: Import code from github into an environment.
+name: import-code-into-env.
 
 on:
   workflow_dispatch:
     inputs:    
+  
+     source-branch-name:
+        description: name of the source branch from which the code is to be imported
+        required: true
+        default: main
      env_name:
-        description: name for the environment to be created
+        description: name for the environment to import the solution into
         required: true
 
      solution_name:
