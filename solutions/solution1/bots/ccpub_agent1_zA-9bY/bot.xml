@@ -9,18 +9,29 @@
   <synchronizationstatus>{
   "$kind": "BotSynchronizationDetails",
   "contentVersion": 2,
+  "lastFinishedPublishOperation": {
+    "$kind": "PublishResultDetails",
+    "operationStart": "2025-06-30T04:44:57.9466439Z",
+    "operationEnd": "2025-06-30T04:45:11.3605404Z",
+    "status": "Succeeded"
+  },
+  "lastPublishedDetails": {
+    "$kind": "SuccessfulPublishResultDetails",
+    "authenticationMode": "Integrated"
+  },
   "currentSynchronizationState": {
     "$kind": "SynchronizationState",
     "botRegistration": {
       "$kind": "BotRegistrationDetails",
-      "botRegistrationIdConsumptionTime": "2025-06-29T22:37:03Z",
-      "applicationId": "4eb571c0-8dc9-4206-987d-00598eddbc7d",
+      "botRegistrationIdConsumptionTime": "2025-06-30T04:44:52Z",
+      "applicationId": "250cc601-f940-4809-ab0c-1c9439c3ed28",
       "isAppAvailableInTenant": true
     },
     "provisioningStatus": "Provisioned",
     "state": "Synchronized"
   },
-  "lastSynchronizedOnUtc": "2025-06-29T22:37:32.9892218Z"
+  "lastSynchronizedOnUtc": "2025-06-30T04:45:33.5122824Z"
 }</synchronizationstatus>
   <template>default-2.1.0</template>
+  <timezoneruleversionnumber>4</timezoneruleversionnumber>
 </bot>
