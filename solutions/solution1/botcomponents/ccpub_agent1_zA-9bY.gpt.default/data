@@ -1,3 +1,5 @@
 kind: GptComponentMetadata
-instructions: Initial Instructions
+instructions: |-
+  Initial Instructions
+  dev1 instructions
 gptCapabilities: {}
