@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:    
      env_name:
-        description: name for the environment to be created
+        description: name for the environment to import the solution into
         required: true
 
      solution_name:
