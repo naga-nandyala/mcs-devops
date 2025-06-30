@@ -1,4 +1,4 @@
-name: Import code from github into an environment.
+name: import-code-into-env.
 
 on:
   workflow_dispatch:

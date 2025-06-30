@@ -14,5 +14,26 @@
    1. go to the env
    2. create solution (and publisher???)
    3. create a new agent in PP/MCS
-4. use this wf to checking the code to gh.
+4. use this wf (export-and-branch-solution ) to checking the code to gh.
+5. this creates a new branch  (SolutionName-GHActor-UTCtimestamp)
+6. raise a PR to see the changes and merge it to main.
 
+## subsequent development of features
+
+1. create a feature branch (feat-01) in gh
+1. create a new env (prod type) with this wf ()
+
+
+
+## power platform admin role (from Power Shell)
+
+```text
+Error: The service principal with id '0c9e2c1c-515e-4274-8ce8-04a0f6c2c778' for application c349cbbe-cd88-4950-9907-74bafca5c1d6 does not have permission to access the path 'https://10.0.8.11:20124/providers/Microsoft.BusinessAppPlatform/locations/unitedstates/environmentLanguages?api-version=2020-08-01' in tenant 183e4064-01e5-41a5-b018-ce616a78c521.
+```
+
+```ps1
+$appId = "CLIENT_ID_FROM_AZURE_APP"
+$tenantId = "TENANT_ID"
+Add-PowerAppsAccount -Endpoint prod -TenantID $tenantId 
+New-PowerAppManagementApp -ApplicationId $appId
+```
